@@ -1,0 +1,11 @@
+# Level 1 Configuration File
+# Format: parameter=value
+
+# Drop falling speed (pixels per second)
+drop_speed=200
+
+# Number of drops to collect to win
+drops_to_collect=10
+
+# Number of lives player starts with
+lives=5
