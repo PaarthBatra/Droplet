@@ -39,7 +39,7 @@ public class Main implements ApplicationListener {
     private boolean gameOver = false;
     // --- End Scoring ---
 
-    float bucketSpeed = 5f;
+    float bucketSpeed = 300f; // Faster movement for keyboard controls
     float dropSpeed = 200f; // Much faster drop speed
 
     private final Vector3 touchPos = new Vector3();
@@ -129,6 +129,24 @@ public class Main implements ApplicationListener {
         dropBounds.x = MathUtils.random(0, viewport.getWorldWidth() - dropBounds.width);
         dropSprite.setPosition(dropBounds.x, dropBounds.y);
     }
+    
+    private void restartGame() {
+        // Reset game state
+        actualScore = 0;
+        lives = 2;
+        gameOver = false;
+        
+        // Reset bucket position
+        if (bucketSprite != null) {
+            bucketSprite.setPosition(0, 0);
+            bucketBounds.x = 0;
+        }
+        
+        // Reset drop position
+        resetDrop();
+        
+        Gdx.app.log("Game", "Game restarted with 2 lives");
+    }
 
     @Override
     public void resize(int width, int height) {
@@ -163,6 +181,14 @@ public class Main implements ApplicationListener {
     }
 
     private void input() {
+        if (gameOver) {
+            // Handle replay button click when game is over
+            if (Gdx.input.justTouched()) {
+                restartGame();
+            }
+            return;
+        }
+        
         if (bucketSprite == null || viewport == null || bucketBounds == null) return;
         float currentBucketX = bucketSprite.getX();
         float deltaTime = Gdx.graphics.getDeltaTime();
@@ -255,6 +281,13 @@ public class Main implements ApplicationListener {
                 scoreDisplayFont.setColor(Color.WHITE);
                 scoreDisplayFont.draw(spriteBatch, "Final Score: " + String.valueOf(actualScore),
                     centerX, centerY - 40,
+                    0, Align.center, false
+                );
+                
+                // Draw Replay button below final score
+                scoreDisplayFont.setColor(Color.YELLOW);
+                scoreDisplayFont.draw(spriteBatch, "Click to Replay",
+                    centerX, centerY - 80,
                     0, Align.center, false
                 );
             }
