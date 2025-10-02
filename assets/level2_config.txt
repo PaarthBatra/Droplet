@@ -5,7 +5,13 @@
 drop_speed=300
 
 # Number of drops to collect to win
-drops_to_collect=20
+drops_to_collect=5
 
 # Number of lives player starts with
 lives=3
+
+# Number of drops that spawn at the same time
+drops_at_a_time=2
+
+# Time difference between spawning drops (in seconds)
+spawn_delay=0.7

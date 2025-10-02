@@ -1,17 +1,17 @@
-# Level 1 Configuration File
+# Level 4 Configuration File
 # Format: parameter=value
 
 # Drop falling speed (pixels per second)
-drop_speed=200
+drop_speed=300
 
 # Number of drops to collect to win
-drops_to_collect=3
+drops_to_collect=7
 
 # Number of lives player starts with
-lives=5
+lives=2
 
 # Number of drops that spawn at the same time
-drops_at_a_time=2
+drops_at_a_time=3
 
 # Time difference between spawning drops (in seconds)
-spawn_delay=0.8
+spawn_delay=0.5
